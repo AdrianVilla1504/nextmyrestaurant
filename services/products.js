@@ -18,23 +18,6 @@ export async function getProduct(_id) {
   }
 }
 
-/* export async function getClientProducts(host) {
-  const token = localStorage.getItem('token');
-  try {
-    const options = {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        authorization: `Bearer ${token}`,
-      },
-    };
-    const response = await fetch(`${BASE_URL}/api/products/byClientId/${host}`, options);
-    return response.json();
-  } catch (error) {
-    return new Error(error);
-  }
-} */
-
 export async function createProduct(ProductRegister) {
   const token = localStorage.getItem('token');
   try {
