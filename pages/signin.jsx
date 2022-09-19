@@ -1,7 +1,45 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @next/next/no-img-element */
 import { LockClosedIcon } from '@heroicons/react/20/solid'
+import { useState } from 'react';
+import { login } from '../services/auth';
+import { useRouter } from 'next/router';
+import swal from 'sweetalert';
 import Link from 'next/link';
 const signin = () => {
+
+  const router = useRouter();
+
+  const [form, setForm] = useState({});
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handlerSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const { token, profile } = await login(form);
+      localStorage.setItem('token', token);
+      localStorage.setItem('profile', JSON.stringify(profile));
+      console.log("token", token);
+      console.log("profile", profile);
+      if (token) {
+        router.push('/');
+      } else {
+        swal({
+          title: 'Error!',
+          text: 'Your user or password  is invalid',
+          icon: 'error',
+          button: 'Try again',
+        });
+        localStorage.clear();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="bg-white min-h-full pt-[70px] pb-[172px]">
       <div className="flex h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -16,7 +54,7 @@ const signin = () => {
               Sign in to your account
             </h2>
           </div>
-          <form className="mt-8 space-y-6" action="#" method="POST">
+          <form className="mt-8 space-y-6" action="#" method="POST" onSubmit={handlerSubmit}>
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="-space-y-px rounded-md shadow-sm">
               <div>
@@ -31,6 +69,7 @@ const signin = () => {
                   required
                   className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                   placeholder="Email address"
+                  onChange={handleChange}
                 />
               </div>
               <div>
@@ -45,6 +84,7 @@ const signin = () => {
                   required
                   className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                   placeholder="Password"
+                  onChange={handleChange}
                 />
               </div>
             </div>

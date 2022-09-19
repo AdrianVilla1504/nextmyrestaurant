@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 /*
   This example requires Tailwind CSS v2.0+
@@ -15,18 +16,34 @@
   }
   ```
 */
-import { Fragment, useState } from 'react'
-import { Dialog, Popover, Tab, Transition } from '@headlessui/react'
+import { Fragment, useState, useEffect } from 'react'
+import { Dialog, Popover, Transition } from '@headlessui/react'
 import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link';
+import Router, { useRouter } from 'next/router';
 
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {
+const NavbarHomeClient = () => {
+  const router = useRouter();
+  const [ profile, setProfile ] = useState();
+
+  useEffect(() => {
+    const result = localStorage.getItem('profile');
+    setProfile(JSON.parse(result))
+  }, []);
+
+  console.log("Dios mediante esto si me traiga el hpta profiles por fuera del scope de useEffect nojoda:", profile);
+
   const [open, setOpen] = useState(false)
+
+  const handleClickOut = () => {
+    localStorage.clear();
+    router.reload(window.location.pathname)
+  };
 
   return (
     <div className="bg-white">
@@ -67,21 +84,42 @@ export default function Example() {
                   </button>
                 </div>
 
+                {
+                  profile ? (
+                  <div className="space-y-6 border-t border-gray-200 py-6 px-4">
+                  <div className="flow-root">
+                    <a className="-m-2 block p-2 font-medium text-gray-900">
+                      Welcome {profile.name}, glad to see you!
+                    </a>
+                  </div>
+                  <div className="flow-root">
+                    <a className="-m-2 block p-2 font-medium text-gray-900">
+
+                    </a>
+                  </div>
+                </div>
+                )
+                :
+                (
+
                 <div className="space-y-6 border-t border-gray-200 py-6 px-4">
                   <div className="flow-root">
                     <Link href="/signin">
-                      <a  className="-m-2 block p-2 font-medium text-gray-900">
+                      <a className="-m-2 block p-2 font-medium text-gray-900">
                         Sign in
                       </a>
                     </Link>
                   </div>
                   <div className="flow-root">
-                    <a href="#" className="-m-2 block p-2 font-medium text-gray-900">
-                      Create account
-                    </a>
+                    <Link href="/register">
+                      <a className="-m-2 block p-2 font-medium text-gray-900">
+                        Create account
+                      </a>
+                    </Link>
                   </div>
                 </div>
-
+                )
+              }
               </Dialog.Panel>
             </Transition.Child>
           </div>
@@ -123,18 +161,40 @@ export default function Example() {
               </Popover.Group>
 
               <div className="ml-auto flex items-center">
-                <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                  <Link href="/signin">
-                  <a className="text-sm font-medium text-gray-700 hover:text-gray-800">
-                    Sign in
-                  </a>
-                  </Link>
-                  <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
-                  <a href="#" className="text-sm font-medium text-gray-700 hover:text-gray-800">
-                    Create account
-                  </a>
-                </div>
-
+              {
+                profile ? (
+                  <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
+                    <a className="text-sm font-medium text-gray-700 hover:text-gray-800">
+                      Hi {profile.name}, enjoy your visit
+                    </a>
+                    <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
+                      <a className="text-sm font-medium text-gray-700 hover:text-gray-800">
+                        Your orders
+                      </a>
+                    <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
+                      <button onClick={handleClickOut} className="text-sm font-medium text-gray-700
+                        hover:text-gray-800">
+                          Log out
+                      </button>
+                  </div>
+                )
+                :
+                (
+                  <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
+                    <Link href="/signin">
+                    <a className="text-sm font-medium text-gray-700 hover:text-gray-800">
+                      Sign in
+                    </a>
+                    </Link>
+                    <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
+                    <Link href="/register">
+                      <a className="text-sm font-medium text-gray-700 hover:text-gray-800">
+                        Create account
+                      </a>
+                    </Link>
+                  </div>
+                )
+              }
                 {/* Search */}
                 <div className="flex lg:ml-6">
                   <a href="#" className="p-2 text-gray-400 hover:text-gray-500">
@@ -162,3 +222,5 @@ export default function Example() {
     </div>
   )
 }
+
+export default NavbarHomeClient;
