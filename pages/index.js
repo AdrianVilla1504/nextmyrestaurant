@@ -4,6 +4,7 @@ import styles from '../styles/Home.module.css' */
 
 import React from 'react'
 import HomeProducts from '../components/HomeProducts';
+import Cart from '../components/Cart';
 import NavbarHomeClient from '../components/NavbarHomeClient';
 
 
