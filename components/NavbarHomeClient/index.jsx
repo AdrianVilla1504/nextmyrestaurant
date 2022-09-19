@@ -1,21 +1,7 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
-/*
-  This example requires Tailwind CSS v2.0+
 
-  This example requires some changes to your config:
-
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/aspect-ratio'),
-    ],
-  }
-  ```
-*/
 import Cart from '../../components/Cart'
 import { Fragment, useState, useEffect } from 'react'
 import { Dialog, Popover, Transition } from '@headlessui/react'
@@ -38,7 +24,6 @@ const NavbarHomeClient = () => {
 
   const handleOpenCart = () => {
     setOpenCart(true);
-    router.reload(window.location.pathname)
   };
 
   const handleClickOut = () => {
@@ -219,9 +204,9 @@ const NavbarHomeClient = () => {
 
                     {/* Cart */}
                     <div className="ml-4 flow-root lg:ml-6">
-                      <a href="#" className="group -m-2 flex items-center p-2">
+                      <a className="group -m-2 flex items-center p-2">
                         <ShoppingBagIcon
-                          className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+                          className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500 cursor-pointer"
                           aria-hidden="true"
                           onClick={handleOpenCart}
                         />
