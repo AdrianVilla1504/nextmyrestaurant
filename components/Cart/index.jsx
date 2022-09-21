@@ -4,7 +4,7 @@ import { Fragment, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { useRouter } from 'next/router';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector  } from "react-redux";
 import { useEffect } from 'react';
 import { adjustItemQty, removeFromCart } from '../../store/action/shopping';
 
@@ -144,8 +144,11 @@ const handleRemoveItem = (_id) => {
 
                     <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
                       <div className="flex justify-between text-base font-medium text-gray-900">
-                        <p>Subtotal</p>
-                        <p>$262.00</p>
+                        <p>Total Items</p>
+                        <p>{totalItems}</p>
+
+                        <p>Total cost</p>
+                        <p>$ {totalPrice}</p>
                       </div>
                       <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                       <div className="mt-6">
