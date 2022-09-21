@@ -8,12 +8,12 @@ import { Dialog, Popover, Transition } from '@headlessui/react'
 import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useSelector, connect } from "react-redux";
 
 
-const NavbarHomeClient = () => {
+const NavbarHomeClient = ({ cart }) => {
   const router = useRouter();
   const [ open, setOpen ] = useState(false)
-  const [ openCart, setOpenCart ] = useState(false);
   const [ profile, setProfile ] = useState();
 
   useEffect(() => {
@@ -22,6 +22,7 @@ const NavbarHomeClient = () => {
   }, []);
 
 
+  const [ openCart, setOpenCart ] = useState(false);
   const handleOpenCart = () => {
     setOpenCart(true);
   };
@@ -30,6 +31,16 @@ const NavbarHomeClient = () => {
     localStorage.clear();
     router.reload(window.location.pathname)
   };
+
+  const [cartcount, setCartCount] = useState(0);
+
+  useEffect(() => {
+    let count = 0;
+    cart.forEach((item) =>{
+      count += item.qty;
+    });
+    setCartCount(count);
+  },[cart, cartcount]);
 
   return (
     <>
@@ -210,7 +221,7 @@ const NavbarHomeClient = () => {
                           aria-hidden="true"
                           onClick={handleOpenCart}
                         />
-                        <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
+                        <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">{cartcount}</span>
                         <span className="sr-only">items in cart, view bag</span>
                       </a>
                     </div>
@@ -224,4 +235,12 @@ const NavbarHomeClient = () => {
   )
 }
 
-export default NavbarHomeClient;
+const mapStateToProps = (state) => {
+  return {
+    cart: state.shop.cart,
+  };
+};
+
+
+
+export default connect(mapStateToProps)(NavbarHomeClient);

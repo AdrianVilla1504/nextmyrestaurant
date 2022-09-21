@@ -1,7 +1,17 @@
 /* eslint-disable @next/next/no-img-element */
+import { addToCart } from "../../store/action/shopping";
+import { useSelector, useDispatch } from "react-redux";
 
-const ProductOverview = ({ details }) => (
 
+
+const ProductOverview = ({ details }) =>{
+  const dispatch = useDispatch();
+
+  const handleDispatch = () => {
+    dispatch(addToCart(details))
+  }
+
+  return (
   details ? (
     <div className="bg-white lg:h-full w-full lg:pb-[54px]">
       <div className="pt-6 lg:grid lg:grid-cols-2">
@@ -26,14 +36,13 @@ const ProductOverview = ({ details }) => (
             <h2 className="sr-only">Product information</h2>
             <p className="text-3xl tracking-tight text-gray-900">{details.price}</p>
 
-            <form className="mt-10">
               <button
-                type="submit"
                 className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                onClick={handleDispatch}
               >
                 Add to bag
               </button>
-            </form>
+
           </div>
 
           <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pt-6 lg:pb-16 lg:pr-8">
@@ -50,5 +59,8 @@ const ProductOverview = ({ details }) => (
       </div>
     </div>
   ) : <p>wait</p>);
+
+
+};
 
 export default ProductOverview;

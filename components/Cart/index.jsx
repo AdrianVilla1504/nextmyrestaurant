@@ -1,9 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment, useState } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
-import { XMarkIcon } from '@heroicons/react/24/outline'
-import { useRouter } from 'next/router'
+import { Fragment, useState } from 'react';
+import { Dialog, Transition } from '@headlessui/react';
+import { XMarkIcon } from '@heroicons/react/24/outline';
+import { useRouter } from 'next/router';
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from 'react';
+import { adjustItemQty, removeFromCart } from '../../store/action/shopping';
 
 const products = [
   {
@@ -34,10 +37,42 @@ const Cart = () =>{
   const router = useRouter();
   const [close, setClose] = useState(true);
 
+const cart = useSelector((state) => state.shop.cart );
 const handleClose = () => {
   setClose(false);
-  router.reload(window.location.pathname)
 };
+
+const [totalPrice, setTotalPrice]= useState(0);
+const [totalItems, setTotalItems] = useState(0);
+
+useEffect(() => {
+  let items = 0;
+  let price = 0;
+
+  cart.forEach((cartitem) => {
+    items += cartitem.qty;
+    price += cartitem.qty * cartitem.price;
+  });
+
+  setTotalItems(items);
+  setTotalPrice(price);
+}, [cart, totalPrice, totalItems, setTotalPrice, setTotalItems]);
+
+//TODO arreglar modelo para recibir cantidad como qty
+const [input, setInput] = useState(1);
+
+const onChangeHandler = (e) => {
+  setInput(e.target.value);
+  adjustItemQty(cart._id, e.target.value);
+};
+
+console.log("que es cart, es esto:" ,cart)
+
+const dispatch = useDispatch();
+
+const handleRemoveItem = (_id) => {
+  dispatch(removeFromCart(_id));
+}
 
   return (
     <Transition.Root show={close} as={Fragment}>
@@ -86,12 +121,12 @@ const handleClose = () => {
                       <div className="mt-8">
                         <div className="flow-root">
                           <ul role="list" className="-my-6 divide-y divide-gray-200">
-                            {products.map((product) => (
-                              <li key={product.id} className="flex py-6">
+                            {cart.map((cartitem) => (
+                              <li key={cartitem._id} className="flex py-6">
                                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                   <img
-                                    src={product.imageSrc}
-                                    alt={product.imageAlt}
+                                    src={cartitem.image}
+                                    alt={cartitem.name}
                                     className="h-full w-full object-cover object-center"
                                   />
                                 </div>
@@ -100,19 +135,26 @@ const handleClose = () => {
                                   <div>
                                     <div className="flex justify-between text-base font-medium text-gray-900">
                                       <h3>
-                                        <a href={product.href}>{product.name}</a>
+                                        <a href={cartitem.name}>{cartitem.name}</a>
                                       </h3>
-                                      <p className="ml-4">{product.price}</p>
+                                      <p className="ml-4">{cartitem.price}</p>
                                     </div>
-                                    <p className="mt-1 text-sm text-gray-500">{product.color}</p>
                                   </div>
                                   <div className="flex flex-1 items-end justify-between text-sm">
-                                    <p className="text-gray-500">Qty {product.quantity}</p>
+                                    <input className="h-[30px] border-black-500"
+                                      min="1"
+                                      type="number"
+                                      id="qty"
+                                      name="qty"
+                                      value={input}
+                                      onChange={onChangeHandler}
+                                    />
 
                                     <div className="flex">
                                       <button
                                         type="button"
                                         className="font-medium text-indigo-600 hover:text-indigo-500"
+                                        onClick={ () => handleRemoveItem(cartitem._id) }
                                       >
                                         Remove
                                       </button>
@@ -164,5 +206,6 @@ const handleClose = () => {
     </Transition.Root>
   )
 }
+
 
 export default Cart;
