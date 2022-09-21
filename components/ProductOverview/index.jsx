@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { addToCart } from "../../store/action/shopping";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 
 

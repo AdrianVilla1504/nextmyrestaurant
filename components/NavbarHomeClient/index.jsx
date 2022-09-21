@@ -8,10 +8,12 @@ import { Dialog, Popover, Transition } from '@headlessui/react'
 import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useSelector, connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 
-const NavbarHomeClient = ({ cart }) => {
+const NavbarHomeClient = () => {
+  const cart = useSelector((state) => state.shop.cart );
+
   const router = useRouter();
   const [ open, setOpen ] = useState(false)
   const [ profile, setProfile ] = useState();
@@ -33,6 +35,7 @@ const NavbarHomeClient = ({ cart }) => {
   };
 
   const [cartcount, setCartCount] = useState(0);
+
 
   useEffect(() => {
     let count = 0;
@@ -235,12 +238,8 @@ const NavbarHomeClient = ({ cart }) => {
   )
 }
 
-const mapStateToProps = (state) => {
-  return {
-    cart: state.shop.cart,
-  };
-};
 
 
 
-export default connect(mapStateToProps)(NavbarHomeClient);
+
+export default NavbarHomeClient;

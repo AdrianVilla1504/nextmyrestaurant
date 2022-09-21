@@ -33,7 +33,7 @@ const shopReducer = (state = INITIAL_STATE, action) => {
         ...state,
         cart: state.cart.map((item) =>
           item._id === action.payload._id
-            ? { ...item, qty: +action.payload.qty }
+            ? { ...item, qty: action.payload.qty }
             : item
         ),
       };
