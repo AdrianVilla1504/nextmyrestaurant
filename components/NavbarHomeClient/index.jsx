@@ -49,7 +49,7 @@ const NavbarHomeClient = () => {
     <>
      {
       openCart ?
-      <Cart />
+      <Cart setOpenCart={setOpenCart} openCart={openCart} />
       :
       null
       }

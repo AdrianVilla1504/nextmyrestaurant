@@ -8,12 +8,12 @@ import { useDispatch, useSelector  } from "react-redux";
 import { useEffect } from 'react';
 import { adjustItemQty, removeFromCart } from '../../store/action/shopping';
 
-const Cart = () =>{
-  const router = useRouter();
-  const [close, setClose] = useState(true);
+const Cart = ({ setOpenCart, openCart }) =>{
+const router = useRouter();
+
 const cart = useSelector((state) => state.shop.cart );
 const handleClose = () => {
-  setClose(false);
+  setOpenCart(false);
 };
 
 const [totalPrice, setTotalPrice]= useState(0);
@@ -33,14 +33,16 @@ useEffect(() => {
 }, [cart, totalPrice, totalItems, setTotalPrice, setTotalItems]);
 
 //TODO arreglar modelo para recibir cantidad como qty
-const [input, setInput] = useState(1);
+const [input, setInput] = useState(cart.map(item => item.qty));
 
 const onChangeHandler = (e) => {
   setInput(e.target.value);
-  adjustItemQty(cart._id, e.target.value);
+  dispatch(adjustItemQty(cart.map( item => item._id), e.target.value))
 };
 
-console.log("que es cart, es esto:" ,cart)
+console.log("veamos la cantidad en cart", cart.map(item => item.qty))
+
+console.log("let's se the cart in cart component", cart.map( item => item._id) );
 
 const dispatch = useDispatch();
 
@@ -49,16 +51,17 @@ const handleRemoveItem = (_id) => {
 }
 
   return (
-    <Transition.Root show={close} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={setClose}>
+    <Transition
+    show={openCart}
+    as={Fragment}
+    enter="ease-in-out duration-500"
+    enterFrom="opacity-0"
+    enterTo="opacity-100"
+    leave="ease-in-out duration-500"
+    leaveFrom="opacity-100"
+    leaveTo="opacity-0">
+      <Dialog as="div" className="relative z-10" open={openCart} onClose={setOpenCart}>
         <Transition.Child
-          as={Fragment}
-          enter="ease-in-out duration-500"
-          enterFrom="opacity-0"
-          enterTo="opacity-100"
-          leave="ease-in-out duration-500"
-          leaveFrom="opacity-100"
-          leaveTo="opacity-0"
         >
           <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
         </Transition.Child>
@@ -99,7 +102,7 @@ const handleRemoveItem = (_id) => {
                               <li key={cartitem._id} className="flex py-6">
                                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                   <img
-                                    src={cartitem.image}
+                                    src={cartitem.img}
                                     alt={cartitem.name}
                                     className="h-full w-full object-cover object-center"
                                   />
@@ -180,7 +183,7 @@ const handleRemoveItem = (_id) => {
           </div>
         </div>
       </Dialog>
-    </Transition.Root>
+    </Transition>
   )
 }
 
