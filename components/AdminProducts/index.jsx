@@ -4,7 +4,6 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchProductsList } from "../../store/action/product";
-import { deleteProduct } from '../../services/products';
 import CardAdminProducts from '../../components/CardAdminProducts';
 
 const HomeProducts = () => {
@@ -16,15 +15,7 @@ const HomeProducts = () => {
     dispatch(fetchProductsList());
   }, []);
 
-  const handleDeleteProduct = async (e) => {
-    e.preventDefault();
-    try {
-      await deleteProduct(productList._id)
-      window.location.reload(false);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
 
   return (
     <>
