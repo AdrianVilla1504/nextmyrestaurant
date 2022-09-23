@@ -45,7 +45,7 @@ const NavbarAdmin = () => {
             </Popover.Button>
           </div>
           <Popover.Group as="nav" className="hidden space-x-10 md:flex">
-            <a href="/" className="text-base font-medium text-gray-500 hover:text-gray-900">
+            <a href="/home" className="text-base font-medium text-gray-500 hover:text-gray-900">
               See all your porducts
             </a>
             <a href="/uploadproduct" className="text-base font-medium text-gray-500 hover:text-gray-900">

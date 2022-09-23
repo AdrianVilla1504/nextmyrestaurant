@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import NavbarAdmin from "../components/NavbarAdmin";
+import { createProduct } from '../services/products';
 import { useState } from 'react';
 import swal from 'sweetalert';
 
@@ -19,13 +20,10 @@ const uploadproduct = () => {
     for (let i= 0; i < file.length; i++){
       formData.append('files', file[i])
     }
-
-
     const payload = {
       method: 'POST',
       body: formData,
     };
-
     try {
       const response = await fetch('http://localhost:8080/api/upload/files', payload);
       const data = await response.json();
@@ -35,7 +33,6 @@ const uploadproduct = () => {
         })
         setImg(urls);
       }
-
     } catch (error) {
       console.log(error);
     }
@@ -46,11 +43,33 @@ const uploadproduct = () => {
         button: "Accept",
       });
   };
-
   console.log("las imagen que vas a mandar al reductor:", img[0]);
 
+  const [ uploadInput, setUploadInput ] = useState({});
+
+  const handleUploadInput = (e) => {
+    setUploadInput({ ...uploadInput, [e.target.name]: e.target.value })
+  };
+
+  const product = {
+    name: uploadInput.name,
+    description: uploadInput.description,
+    price: uploadInput.price,
+    img: img[0]
+  }
+
+  const handleSubmitProduct = async (e) => {
+      e.preventDefault();
+      try {
+        await createProduct(product);
+      } catch (error) {
+        console.log(error);
+      }
+  }
 
 
+
+  console.log("este es el producto que vas a mandar al back", product);
   return (
   <div>
     <NavbarAdmin />
@@ -66,54 +85,57 @@ const uploadproduct = () => {
             </div>
           </div>
           <div className="mt-5 md:col-span-2 md:mt-0">
-            <form action="#" method="POST">
+            <form action="#" method="POST" onSubmit={handleSubmitProduct}>
               <div className="shadow sm:overflow-hidden sm:rounded-md">
                 <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
                   <div className="grid grid-cols-3 gap-6">
                     <div className="col-span-3 sm:col-span-2">
-                      <label htmlFor="company-website" className="block text-sm font-medium text-gray-700">
+                      <label htmlFor="name" className="block text-sm font-medium text-gray-700">
                         Name of the product
                       </label>
                       <div className="mt-1 flex rounded-md shadow-sm">
                         <input
                           type="text"
-                          name="company-website"
-                          id="company-website"
+                          name="name"
+                          id="name"
                           className="block bg-[#a1a1aa] w-full flex-1 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-black"
-                          placeholder="www.example.com"
+                          placeholder="Red Hot Chilli hamburguer"
+                          onChange={handleUploadInput}
                         />
                       </div>
                     </div>
                   </div>
 
                   <div>
-                    <label htmlFor="about" className="block text-sm font-medium text-gray-700">
+                    <label htmlFor="description" className="block text-sm font-medium text-gray-700">
                       Description
                     </label>
                     <div className="mt-1">
                       <textarea
-                        id="about"
-                        name="about"
+                        id="description"
+                        name="description"
                         rows={3}
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm bg-[#a1a1aa] text-black"
                         placeholder="you@example.com"
                         defaultValue={''}
+                        onChange={handleUploadInput}
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label htmlFor="about" className="block text-sm font-medium text-gray-700">
+                    <label htmlFor="price" className="block text-sm font-medium text-gray-700">
                       Price
                     </label>
                     <div className="mt-1">
                       <input
                         type="Number"
-                        id="about"
-                        name="about"
+                        id="price"
+                        name="price"
                         className="mt-1 block w-[100px] h-[40px] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm bg-[#a1a1aa] text-black"
                         placeholder="you@example.com"
                         defaultValue={''}
+                        onChange={handleUploadInput}
                       />
                     </div>
                   </div>

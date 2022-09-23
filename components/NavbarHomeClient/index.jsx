@@ -53,7 +53,7 @@ const NavbarHomeClient = () => {
       :
       null
       }
-      <div className="bg-white fixed w-[100%]" >
+      <div className="bg-white z-50 fixed w-[100%]" >
           {/* Mobile menu */}
           <Transition.Root show={open} as={Fragment}>
             <Dialog as="div" className="relative z-40 lg:hidden" onClose={setOpen}>
