@@ -13,7 +13,7 @@ const ProductOverview = ({ details }) =>{
 
   return (
   details ? (
-    <div className="bg-white lg:h-full w-full lg:pb-[54px]">
+    <div className="bg-white pt-[10%] lg:pt-[5%] lg:h-[100%] w-full lg:pb-[54px]">
       <div className="pt-6 lg:grid lg:grid-cols-2">
         {/* Image gallery */}
         <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid">
