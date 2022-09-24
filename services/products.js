@@ -36,6 +36,25 @@ export async function createProduct(ProductRegister) {
   }
 }
 
+export async function updateProduct(productUpdate) {
+  try {
+    const token = localStorage.getItem('token');
+    const options = {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(productUpdate),
+    };
+    const response = await fetch(`${BASE_URL}/api/products/${productUpdate._id}`, options);
+    return response.json();
+  } catch (error) {
+    return new Error(error);
+  }
+}
+
+
 export async function deleteProduct(_id) {
   const token = localStorage.getItem('token');
   try {
