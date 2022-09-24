@@ -17,7 +17,7 @@ const NavbarAdmin = () => {
 
   const handleClickOut = () => {
     localStorage.clear();
-    router.reload(window.location.pathname);
+    router.push("/");
   };
 
   return (
@@ -41,7 +41,7 @@ const NavbarAdmin = () => {
           </div>
           <Popover.Group as="nav" className="hidden space-x-10 md:flex">
             <a
-              href="/home"
+              href="/"
               className="text-base font-medium text-gray-500 hover:text-gray-900"
             >
               See all your products
