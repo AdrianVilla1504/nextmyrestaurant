@@ -39,7 +39,7 @@ const CardAdminProducts = ({ product }) => {
             </svg>
           </button>
         </div>
-        <Link href={`/productdetail/${product._id}`} key={product._id}>
+        <Link href={`/productadmin/${product._id}`} key={product._id}>
           <a key={product._id} href={product.name} className="group">
             <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
               <img
