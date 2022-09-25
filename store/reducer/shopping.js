@@ -32,10 +32,10 @@ const shopReducer = (state = INITIAL_STATE, action) => {
     case actionTypes.ADJUST_ITEM_QTY:
       return {
         ...state,
-        cart: state.cart.map((itemc) =>
-          itemc._id === action.payload._id
-            ? { ...itemc.qty, qty: +action.payload.item.qty }
-            : itemc
+        cart: state.cart.map((item) =>
+          item._id === action.payload._id
+            ? { ...item, qty: +action.payload.qty}
+            : item
         ),
       };
     default:

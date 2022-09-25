@@ -6,7 +6,8 @@ import { XMarkIcon } from '@heroicons/react/24/outline';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector  } from "react-redux";
 import { useEffect } from 'react';
-import { adjustItemQty, removeFromCart } from '../../store/action/shopping';
+import { removeFromCart } from '../../store/action/shopping';
+import CartProducts from './CartProducts';
 
 const Cart = ({ setOpenCart, openCart }) =>{
 const router = useRouter();
@@ -33,16 +34,7 @@ useEffect(() => {
 }, [cart, totalPrice, totalItems, setTotalPrice, setTotalItems]);
 
 //TODO arreglar modelo para recibir cantidad como qty
-const [input, setInput] = useState(cart.map(item => item.qty));
-
-const onChangeHandler = (e) => {
-  setInput(e.target.value);
-  dispatch(adjustItemQty(cart.map( item => item._id), e.target.value))
-};
-
-console.log("veamos la cantidad en cart", cart.map(item => item.qty))
-
-console.log("let's se the cart in cart component", cart.map( item => item._id) );
+console.log("Cantidad inicial antes de cambiar en el input", (cart.map(item => item.qty)[0]));
 
 const dispatch = useDispatch();
 
@@ -99,46 +91,9 @@ const handleRemoveItem = (_id) => {
                         <div className="flow-root">
                           <ul role="list" className="-my-6 divide-y divide-gray-200">
                             {cart.map((cartitem) => (
-                              <li key={cartitem._id} className="flex py-6">
-                                <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                  <img
-                                    src={cartitem.img}
-                                    alt={cartitem.name}
-                                    className="h-full w-full object-cover object-center"
-                                  />
-                                </div>
-
-                                <div className="ml-4 flex flex-1 flex-col">
-                                  <div>
-                                    <div className="flex justify-between text-base font-medium text-gray-900">
-                                      <h3>
-                                        <a href={cartitem.name}>{cartitem.name}</a>
-                                      </h3>
-                                      <p className="ml-4">{cartitem.price}</p>
-                                    </div>
-                                  </div>
-                                  <div className="flex flex-1 items-end justify-between text-sm">
-                                    <input className="h-[30px] border-black-500"
-                                      min="1"
-                                      type="number"
-                                      id="qty"
-                                      name="qty"
-                                      value={cartitem.qty}
-                                      onChange={onChangeHandler}
-                                    />
-
-                                    <div className="flex">
-                                      <button
-                                        type="button"
-                                        className="font-medium text-indigo-600 hover:text-indigo-500"
-                                        onClick={ () => handleRemoveItem(cartitem._id) }
-                                      >
-                                        Remove
-                                      </button>
-                                    </div>
-                                  </div>
-                                </div>
-                              </li>
+                              <>
+                              <CartProducts key={cartitem._id} product={cartitem} handleRemoveItem={handleRemoveItem} />
+                              </>
                             ))}
                           </ul>
                         </div>
