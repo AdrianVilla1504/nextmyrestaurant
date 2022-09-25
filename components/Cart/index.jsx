@@ -60,7 +60,7 @@ const handleRemoveItem = (_id) => {
     leave="ease-in-out duration-500"
     leaveFrom="opacity-100"
     leaveTo="opacity-0">
-      <Dialog as="div" className="relative z-10" open={openCart} onClose={setOpenCart}>
+      <Dialog as="div" className="relative z-50" open={openCart} onClose={setOpenCart}>
         <Transition.Child
         >
           <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />

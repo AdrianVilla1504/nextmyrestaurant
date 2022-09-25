@@ -41,11 +41,11 @@ const CardAdminProducts = ({ product }) => {
         </div>
         <Link href={`/productadmin/${product._id}`} key={product._id}>
           <a key={product._id} href={product.name} className="group">
-            <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
+            <div className="aspect-w-1 aspect-h-1 h-[150px] w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
               <img
                 src={product.img}
                 alt={product.name}
-                className="h-full w-full object-cover object-center group-hover:opacity-75"
+                className="h-full w-full  object-center group-hover:opacity-75"
               />
             </div>
             <h3 className="mt-4 text-sm text-gray-700">{product.name}</h3>
