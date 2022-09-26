@@ -18,6 +18,7 @@ const NavbarAdmin = () => {
   const handleClickOut = () => {
     localStorage.clear();
     router.push('/');
+    window.location.reload()
   };
 
   return (

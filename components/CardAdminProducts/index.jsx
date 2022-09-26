@@ -55,9 +55,6 @@ const CardAdminProducts = ({ product }) => {
             <p className="mt-1 text-lg font-medium text-gray-800">
               $ {product.price} USD
             </p>
-            <p className="mt-1 text-lg font-medium text-gray-900">
-              {product._id}
-            </p>
           </a>
         </Link>
       </div>
