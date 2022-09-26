@@ -99,7 +99,7 @@ const NavbarHomeClient = () => {
                         </Link>
                       </div>
                       <div className="flow-root">
-                        <Link href="/uploadproduct">
+                        <Link href="/adminregister">
                           <a className="-m-2 block p-2 font-medium text-gray-500">
                             Register a new admin
                           </a>

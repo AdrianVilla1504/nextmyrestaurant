@@ -116,7 +116,7 @@ const DetailEdit = ({ clicktocanceledit, subdetails }) => {
   return (
     <div>
       {subdetails ? (
-        <div className="bg-white py-[10%] px-[20%]">
+        <div className="bg-white py-[25%] px-[6%] lg:py-[10%] lg:px-[20%]">
           <div>
             <div className="md:grid md:grid-cols-3 md:gap-6">
               <div className="md:col-span-1">

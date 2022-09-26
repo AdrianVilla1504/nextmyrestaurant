@@ -16,7 +16,7 @@ const HomeProducts = () => {
   return (
     <div>
       {productList ? (
-        <div className="py-[40px] lg:h-[580px]">
+        <div className="py-[40px] lg:h-full">
           <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
             <h2 className="sr-only">Products</h2>
             <div className="grid grid-cols-1 gap-y-10 gap-x-6 h-[100%] sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
@@ -27,7 +27,7 @@ const HomeProducts = () => {
                       <img
                         src={product.img}
                         alt={product.name}
-                        className="h-[170px] w-full object-cover group-hover:opacity-75"
+                        className="h-[180px] w-full  object-center group-hover:opacity-75"
                       />
                     </div>
                     <h3 className="mt-4 text-lg font-medium text-gray-700">

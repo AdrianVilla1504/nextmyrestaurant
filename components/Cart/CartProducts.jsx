@@ -3,6 +3,7 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { adjustItemQty } from "../../store/action/shopping";
+
 const CartProducts = ({ product, handleRemoveItem  }) => {
 
   const dispatch = useDispatch();
@@ -34,7 +35,7 @@ const CartProducts = ({ product, handleRemoveItem  }) => {
               <p className="ml-4">{product.price}</p>
             </div>
           </div>
-          <div className="flex flex-1 items-end justify-between text-sm">
+          <div className="flex pt-[10px] pr-[5px] flex-1 flex-col lg:flex-row lg:flex-1 items-end justify-between text-sm">
             <input
               className="h-[30px] border-black-500"
               min="1"
