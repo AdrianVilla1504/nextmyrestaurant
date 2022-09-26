@@ -11,7 +11,7 @@ const DetailEdit = ({ clicktocanceledit, subdetails }) => {
     router.push("/");
   };
 
-  console.log("papa",subdetails.img)
+  console.log("papa", subdetails.img);
   const [file, setFile] = useState(null);
   const [img, setImg] = useState([]);
 
@@ -85,13 +85,34 @@ const DetailEdit = ({ clicktocanceledit, subdetails }) => {
   const handleSubmitProduct = async (e) => {
     e.preventDefault();
     try {
-      await updateProduct({ _id, ...product });
+      const x = await updateProduct({ _id, ...product });
+
+      if (x) {
+        swal({
+          title: "Updating success",
+          text: "Your product has been updated successfully",
+          icon: "success",
+          button: "Accept",
+        }).then(function () {
+          router.push('/');
+        })
+      }
+
     } catch (error) {
+      if (error) {
+        swal({
+          title: "Error",
+          text: "Please check the information and try again",
+          icon: "error",
+          button: "Try again",
+        });
+      }
       console.log(error);
     }
   };
 
   console.log("este es el producto que vas a mandar al back", product);
+
   return (
     <div>
       {subdetails ? (
@@ -109,7 +130,7 @@ const DetailEdit = ({ clicktocanceledit, subdetails }) => {
                 </div>
                 <div className="px-4 sm:px-0">
                   <button
-                    onClick={handleEditSuccess}
+                    onClick={clicktocanceledit}
                     href="#"
                     className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900 pr-[10px]"
                   >
@@ -224,23 +245,45 @@ const DetailEdit = ({ clicktocanceledit, subdetails }) => {
                           id="file_input"
                           type="file"
                           onChange={handleChangeFile}
-                          className="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                          className="block w-full text-sm text-gray-500 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                           accept="image/*"
                         />
 
-                        <div className="w-[100%] py-[20px] flex items-center">
-                          <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
-                            <img
-                              src={subdetails?.img}
-                              alt={subdetails?.name}
-                              className="h-[170px] w-full object-cover group-hover:opacity-75"
-                            />
-                          </div>
-                          <div className="px-4 sm:px-0">
-                            <h3 className="text-lg font-medium px-[5%] py-[20px] leading-6 text-gray-900">
-                              If you want to change this image, click once again
-                              on select file.
-                            </h3>
+                        <div className="w-[100%] py-[20px]">
+                          <div className="flex aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
+                            { product.img ? (
+                              <div className="flex flex-col w-[100%] py-[20px] items-center">
+                                <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
+                                  <img
+                                    src={product?.img}
+                                    alt={product?.name}
+                                    className="h-[170px] w-full object-cover group-hover:opacity-75"
+                                  />
+                                </div>
+                                <div className="px-4 sm:px-0">
+                                  <h3 className="text-lg font-medium px-[5%] py-[20px] leading-6 text-gray-900">
+                                    If you want to change this image, click once
+                                    again on select file.
+                                  </h3>
+                                </div>
+                              </div>
+                            ) : (
+                              <div className="flex flex-col lg:flex-row w-[100%] py-[20px] items-center">
+                                <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
+                                  <img
+                                    src={subdetails?.img}
+                                    alt={product?.name}
+                                    className="h-[170px] w-full object-cover group-hover:opacity-75"
+                                  />
+                                </div>
+                                <div className="px-4 sm:px-0">
+                                  <h3 className="text-lg font-medium px-[5%] py-[20px] leading-6 text-gray-900">
+                                    If you want to change this image, click once
+                                    again on select file.
+                                  </h3>
+                                </div>
+                              </div>
+                            )}
                           </div>
                         </div>
                       </div>
