@@ -134,7 +134,7 @@ const DetailEdit = ({ clicktocanceledit, subdetails }) => {
                     href="#"
                     className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900 pr-[10px]"
                   >
-                    Cancel edit
+                    Cancel update
                   </button>
                 </div>
               </div>
@@ -252,7 +252,7 @@ const DetailEdit = ({ clicktocanceledit, subdetails }) => {
                         <div className="w-[100%] py-[20px]">
                           <div className="flex aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
                             { product.img ? (
-                              <div className="flex flex-col w-[100%] py-[20px] items-center">
+                              <div className="flex flex-col lg:flex-row w-[100%] py-[20px] items-center">
                                 <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
                                   <img
                                     src={product?.img}

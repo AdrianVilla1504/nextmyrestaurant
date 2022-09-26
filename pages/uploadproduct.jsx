@@ -4,8 +4,11 @@ import NavbarAdmin from "../components/NavbarAdmin";
 import { createProduct } from "../services/products";
 import { useState } from "react";
 import swal from "sweetalert";
+import { useRouter } from "next/router";
 
 const uploadproduct = () => {
+  const router = useRouter();
+
   const [file, setFile] = useState(null);
   const [img, setImg] = useState([]);
 
@@ -93,8 +96,24 @@ const uploadproduct = () => {
         });
       } else {
         await createProduct(product);
+        swal({
+          title: "Product created successfully",
+          text: "Your product was created successfully",
+          icon: "success",
+          button: "Accept"
+        }).then(() =>{
+        router.push('/')
+        })
       }
     } catch (error) {
+      if(error){
+        swal({
+          title: "An error has ocurred",
+          text: "Please, check all input fields, validate the info and try again",
+          icon: "error",
+          button: "Try again"
+        })
+      }
       console.log(error);
     }
   };

@@ -11,7 +11,7 @@ const CardAdminProducts = ({ product }) => {
     } catch (error) {
       console.log(error);
     }
-  };  console.log(product._id)
+  };
 
   return (
     <>
