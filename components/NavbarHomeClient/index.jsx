@@ -158,8 +158,8 @@ const NavbarHomeClient = () => {
                   <a href="#">
                     <span className="sr-only">Your Company</span>
                     <img
-                      className="h-8 w-auto"
-                      src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                      className="h-10 w-auto"
+                      src="https://res.cloudinary.com/dkagy4g5m/image/upload/v1664211095/hamburguer_pnssvp.png"
                       alt=""
                     />
                   </a>

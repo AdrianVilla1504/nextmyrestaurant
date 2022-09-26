@@ -37,7 +37,7 @@ const ProductOverview = ({ details }) =>{
             <p className="text-3xl tracking-tight text-gray-900">$ {details.price} USD</p>
 
               <button
-                className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-[#FF9E00] py-3 px-8 text-base font-medium text-white hover:bg-[#E18B00] focus:outline-none focus:ring-2 focus:ring-[#F99A00] focus:ring-offset-2"
                 onClick={handleDispatch}
               >
                 Add to bag
