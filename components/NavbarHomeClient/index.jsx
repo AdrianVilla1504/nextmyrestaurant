@@ -48,7 +48,7 @@ const NavbarHomeClient = () => {
   }, [cart, cartcount]);
 
   return (
-    <>
+    <div>
       {openCart ? <Cart setOpenCart={setOpenCart} openCart={openCart} /> : null}
       <div className="bg-white z-50 fixed w-[100%]">
         {/* Mobile menu */}
@@ -236,7 +236,7 @@ const NavbarHomeClient = () => {
           </nav>
         </header>
       </div>
-    </>
+    </div>
   );
 };
 

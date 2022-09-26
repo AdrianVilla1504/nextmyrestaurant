@@ -33,7 +33,8 @@ const NavbarHomeClient = () => {
   };
 
   return (
-    <>
+    <div>
+      { profile ? (
       <div className="bg-white z-50 fixed w-[100%]">
         {/* Mobile menu */}
         <Transition.Root show={open} as={Fragment}>
@@ -238,7 +239,16 @@ const NavbarHomeClient = () => {
           </nav>
         </header>
       </div>
-    </>
+      )
+      :
+      (
+        <div className="h-full w-full bg-white flex items-center justify-content-center">
+          <h1>Wait...</h1>
+        </div>
+      )
+    }
+
+    </div>
   );
 };
 
