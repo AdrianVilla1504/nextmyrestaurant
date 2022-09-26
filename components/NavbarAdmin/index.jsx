@@ -79,20 +79,35 @@ const NavbarHomeClient = () => {
                   {profile ? (
                     <div className="space-y-6 border-t border-gray-200 py-6 px-4">
                       <div className="flow-root">
-                        <a className="-m-2 block p-2 font-medium text-gray-900">
+                        <a className="-m-2 block p-2 font-semibold text-lg text-black">
                           Welcome {profile.name}, glad to see you!
                         </a>
                       </div>
                       <div className="flow-root">
-                        <a className="-m-2 block p-2 font-medium text-gray-900">
-                          Your orders
-                        </a>
+                        <Link href="/">
+                          <a className="-m-2 block p-2 font-medium text-gray-500">
+                            All your products
+                          </a>
+                        </Link>
+                      </div>
+                      <div className="flow-root">
+                        <Link href="/uploadproduct">
+                          <a className="-m-2 block p-2 font-medium text-gray-500">
+                            Upload a new product
+                          </a>
+                        </Link>
+                      </div>
+                      <div className="flow-root">
+                        <Link href="/uploadproduct">
+                          <a className="-m-2 block p-2 font-medium text-gray-500">
+                            Register a new admin
+                          </a>
+                        </Link>
                       </div>
                       <div className="flow-root">
                         <button
                           onClick={handleClickOut}
-                          className="text-sm font-medium text-gray-700
-                            hover:text-gray-800"
+                          className="-m-2 block p-2 font-medium text-gray-500"
                         >
                           Log out
                         </button>
@@ -140,8 +155,7 @@ const NavbarHomeClient = () => {
 
                 {/* Logo */}
                 <div className="ml-4 flex lg:ml-0">
-                  <a href="#">
-                    <span className="sr-only">Your Company</span>
+                  <a href="/">
                     <img
                       className="h-10 w-auto"
                       src="https://res.cloudinary.com/dkagy4g5m/image/upload/v1664211095/hamburguer_pnssvp.png"

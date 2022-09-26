@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
@@ -155,14 +156,15 @@ const NavbarHomeClient = () => {
 
                 {/* Logo */}
                 <div className="ml-4 flex lg:ml-0">
-                  <a href="#">
-                    <span className="sr-only">Your Company</span>
-                    <img
-                      className="h-10 w-auto"
-                      src="https://res.cloudinary.com/dkagy4g5m/image/upload/v1664211095/hamburguer_pnssvp.png"
-                      alt=""
-                    />
-                  </a>
+                    <a href="/">
+                      <img
+                        className="h-10 w-auto hover-saturate-100"
+                        src="https://res.cloudinary.com/dkagy4g5m/image/upload/v1664211095/hamburguer_pnssvp.png"
+                        alt=""
+                        href="/"
+                      />
+                    </a>
+
                 </div>
 
                 {/* Flyout menus */}

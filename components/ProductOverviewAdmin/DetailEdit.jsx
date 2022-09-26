@@ -155,7 +155,7 @@ const DetailEdit = ({ clicktocanceledit, subdetails }) => {
                               type="text"
                               name="name"
                               id="name"
-                              className="block pl-[5px] bg-white h-[30px] w-full flex-1 rounded-md border-[3px] focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-black"
+                              className="block pl-[5px] bg-white h-[30px] w-full flex-1 rounded-md border-[3px] focus:border-[#FF9E00] focus:ring-[#FF9E00] sm:text-sm text-black"
                               placeholder={subdetails?.name}
                               onChange={handleUploadInput}
                             />
@@ -175,7 +175,7 @@ const DetailEdit = ({ clicktocanceledit, subdetails }) => {
                             id="description"
                             name="description"
                             rows={3}
-                            className="mt-1 block w-full pl-[5px] rounded-md border-[3px] shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm bg-white text-black"
+                            className="mt-1 block w-full pl-[5px] rounded-md border-[3px] shadow-sm focus:border-[#FF9E00] focus:ring-[#FF9E00] sm:text-sm bg-white text-black"
                             placeholder={subdetails?.description}
                             defaultValue={""}
                             onChange={handleUploadInput}
@@ -194,7 +194,7 @@ const DetailEdit = ({ clicktocanceledit, subdetails }) => {
                           id="type"
                           name="type"
                           defaultValue={DetailEdit.type}
-                          className="mt-1  block text-black w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                          className="mt-1  block text-black w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-[#FF9E00] focus:outline-none focus:ring-[#FF9E00] sm:text-sm"
                           onChange={handleUploadInput}
                         >
                           <option value="FOOD">Food</option>
@@ -211,7 +211,7 @@ const DetailEdit = ({ clicktocanceledit, subdetails }) => {
                         </label>
                         <div className="mt-1 flex items-center">
                           <div className="pr-[10px]">
-                            <span className="mt-1 w-[30px] h-[40px] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm bg-white text-black">
+                            <span className="mt-1 w-[30px] h-[40px] rounded-md border-gray-300 shadow-sm focus:border-[#FF9E00] focus:ring-[#FF9E00] sm:text-sm bg-white text-black">
                               ${" "}
                             </span>
                           </div>
@@ -219,13 +219,13 @@ const DetailEdit = ({ clicktocanceledit, subdetails }) => {
                             type="Number"
                             id="price"
                             name="price"
-                            className="mt-1 block p-[5px] w-[70px] h-[40px] rounded-md border-[3px] shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm bg-white text-black"
+                            className="mt-1 block p-[5px] w-[70px] h-[40px] rounded-md border-[3px] shadow-sm focus:border-[#FF9E00] focus:ring-[#FF9E00] sm:text-sm bg-white text-black"
                             placeholder="5"
                             defaultValue={DetailEdit?.price}
                             onChange={handleUploadInput}
                           />
                           <div className="pl-[10px]">
-                            <span className="mt-1 w-[30px] h-[40px] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm bg-white text-black">
+                            <span className="mt-1 w-[30px] h-[40px] rounded-md border-gray-300 shadow-sm focus:border-[#FF9E00] focus:ring-[#FF9E00] sm:text-sm bg-white text-black">
                               {" "}
                               USD
                             </span>
