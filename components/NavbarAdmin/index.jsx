@@ -17,7 +17,7 @@ const NavbarAdmin = () => {
 
   const handleClickOut = () => {
     localStorage.clear();
-    router.push("/");
+    router.push('/');
   };
 
   return (
@@ -35,7 +35,7 @@ const NavbarAdmin = () => {
             </a>
             <div className="hidden pl-[50px] md:flex md:flex-1	items-center justify-start lg:w-0">
               <p className="whitespace-nowrap text-base font-medium text-gray-900  pr-[10px]">
-                Hello {profileAdmin.name}
+                Hello {profileAdmin?.name}
               </p>
             </div>
           </div>
