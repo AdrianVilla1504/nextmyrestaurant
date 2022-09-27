@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-const BASE_URL = process.env.REACT_APP_DB_URL;
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 export async function getUsers() {
   try {
