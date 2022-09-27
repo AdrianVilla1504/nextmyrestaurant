@@ -58,7 +58,7 @@ const signin = () => {
         <div className="w-full max-w-md space-y-8">
           <div>
             <img
-              className="mx-auto h-[100px] lg:h-[200px] w-auto"
+              className="mx-auto h-[180px] lg:h-[200px] w-auto"
               src="https://res.cloudinary.com/dkagy4g5m/image/upload/v1664218685/logo_burgir_jrmwvf.png"
               alt="Logo_1"
             />
@@ -105,7 +105,7 @@ const signin = () => {
               <div className="text-sm">
                 <Link href="/register">
                   <a className="font-medium text-[#E18B01] hover:text-[#FF9E00]">
-                    Or click here to registe
+                    Or click here to register
                   </a>
                 </Link>
               </div>

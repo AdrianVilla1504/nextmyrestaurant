@@ -40,7 +40,7 @@ const register = () => {
           <div className="w-full max-w-md space-y-8">
             <div>
               <img
-                className="mx-auto h-[100px] lg:h-[200px] w-auto"
+                className="mx-auto h-[180px] lg:h-[200px] w-auto"
                 src="https://res.cloudinary.com/dkagy4g5m/image/upload/v1664218685/logo_burgir_jrmwvf.png"
                 alt="Logo_1"
               />

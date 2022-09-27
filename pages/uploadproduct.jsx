@@ -249,7 +249,7 @@ const uploadproduct = () => {
                           className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                           htmlFor="file_input"
                         >
-                          Upload file
+                          Upload an image
                         </label>
                         <input
                           name="file"
