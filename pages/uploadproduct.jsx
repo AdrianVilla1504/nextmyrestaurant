@@ -30,7 +30,7 @@ const uploadproduct = () => {
     };
     try {
       const response = await fetch(
-        "http://localhost:8080/api/upload/files",
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/upload/files`,
         payload
       );
       const data = await response.json();
