@@ -5,7 +5,14 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      filter: [ 'hover', 'focus' ],
+      saturate: ['hover', 'focus'],
+      saturate: {
+        25: '.25',
+        75: '.75',
+      }
+    },
   },
   plugins: [],
 }
