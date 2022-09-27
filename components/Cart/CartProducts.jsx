@@ -32,7 +32,7 @@ const CartProducts = ({ product, handleRemoveItem  }) => {
               <h3>
                 <a href={product.name}>{product.name}</a>
               </h3>
-              <p className="ml-4">{product.price}</p>
+              <p className="ml-4">$ {product.price} USD</p>
             </div>
           </div>
           <div className="flex pt-[10px] pr-[5px] flex-1 flex-col lg:flex-row lg:flex-1 items-end justify-between text-sm">
