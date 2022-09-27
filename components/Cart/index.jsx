@@ -108,7 +108,6 @@ const handleRemoveItem = (_id) => {
                         <p>Total cost</p>
                         <p>$ {totalPrice}</p>
                       </div>
-                      <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                     </div>
                   </div>
                 </Dialog.Panel>
