@@ -4,7 +4,7 @@
 import React, { useState, useEffect } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-import CheckoutForm from "../components/StripeCheckout/index";
+import CheckoutForm from "../components/StripeCheckOut/index";
 
 import { removeFromCart } from "../store/action/shopping";
 import { useSelector, useDispatch } from "react-redux";
@@ -69,7 +69,7 @@ const trypay = () => {
   return (
     <>
       <NavbarHomeClient />
-      <div className="bg-white pt-[90px] flex flex-column lg:flex-row items-center justify-center h-[100vh] w-[100vw]">
+      <div className="bg-white pt-[60px] flex flex-col items-center lg:pt-[90px] lg:pl-[70px] lg:flex lg:flex-row lg:items-center lg:justify-center h-[100vh] w-[100vw]">
         {clientSecret && (
           <>
             <div>
@@ -87,7 +87,6 @@ const trypay = () => {
               <div>
                 <p className="text-black">
                   Total products = {totalItems}
-
                 </p>
                 <p className="text-black">
                   Total purchase = $ {totalPrice} USD

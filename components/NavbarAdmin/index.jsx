@@ -106,12 +106,12 @@ const NavbarHomeClient = () => {
                         </Link>
                       </div>
                       <div className="flow-root">
-                        <button
+                        <a
                           onClick={handleClickOut}
                           className="-m-2 block p-2 font-medium text-gray-500"
                         >
                           Log out
-                        </button>
+                        </a>
                       </div>
                     </div>
                   ) : (
