@@ -15,7 +15,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 
-const NavbarHomeClient = () => {
+const NavbarPay = () => {
   const cart = useSelector((state) => state.shop.cart);
 
   const router = useRouter();
@@ -143,11 +143,11 @@ const NavbarHomeClient = () => {
             aria-label="Top"
             className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
           >
-            <div className="border-b border-gray-200">
+            <div className="border-b lg:ml-[-35%] lg:w-[100%] border-gray-200">
               <div className="flex h-16 items-center">
                 <button
                   type="button"
-                  className="rounded-md bg-white p-2 text-gray-400 lg:hidden"
+                  className="rounded-md bg-white w-[40px] p-2 text-gray-400 lg:hidden"
                   onClick={() => setOpen(true)}
                 >
                   <span className="sr-only">Open menu</span>
@@ -240,4 +240,4 @@ const NavbarHomeClient = () => {
   );
 };
 
-export default NavbarHomeClient;
+export default NavbarPay;

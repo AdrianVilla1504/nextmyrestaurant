@@ -1,5 +1,7 @@
+import Link from "next/link";
 import React from "react";
 import NavbarPay from "../components/NavbarPay/index";
+
 
 const succespage = () => {
   return (
@@ -25,12 +27,14 @@ const succespage = () => {
             </p>
             <p> Have a great day! </p>
             <div className="py-10 text-center">
-              <a
-                href="#"
-                className="px-12 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3"
-              >
-                GO BACK
-              </a>
+              <Link href="/">
+                <a
+                  href="#"
+                  className="group relative flex w-full justify-center rounded-md border border-transparent bg-[#FF9E00]  py-2 px-4 text-sm font-medium text-white  hover:bg-[#E18B00] focus:outline-none focus:ring-2 focus:ring-[#FF9E00] focus:ring-[#F99A00]"
+                >
+                  Go back to the menu
+                </a>
+              </Link>
             </div>
           </div>
         </div>
