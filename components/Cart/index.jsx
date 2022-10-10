@@ -79,7 +79,7 @@ const handleRemoveItem = (_id) => {
                         <div className="ml-3 flex h-7 items-center">
                           <button
                             type="button"
-                            className="-m-2 p-2 text-gray-400 hover:text-gray-500"
+                            className="-m-2 p-2 w-[38px] text-gray-400 hover:text-gray-500"
                             onClick={handleClose}
                           >
                             <span className="sr-only">Close panel</span>
@@ -113,7 +113,7 @@ const handleRemoveItem = (_id) => {
                         <Link href="/trypay">
                         <button
                           href="#"
-                          className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                          className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-[#FF9E00] py-3 px-8 text-base font-medium text-white hover:bg-[#E18B00] focus:outline-none focus:ring-2 focus:ring-[#F99A00] focus:ring-offset-2"
                         >
                           Checkout
                         </button>

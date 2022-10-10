@@ -147,7 +147,7 @@ const NavbarHomeClient = () => {
               <div className="flex h-16 items-center">
                 <button
                   type="button"
-                  className="rounded-md bg-white p-2 text-gray-400 lg:hidden"
+                  className="rounded-md w-[40px] bg-white p-2 text-gray-400 lg:hidden"
                   onClick={() => setOpen(true)}
                 >
                   <span className="sr-only">Open menu</span>
