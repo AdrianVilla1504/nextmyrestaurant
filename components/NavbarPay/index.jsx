@@ -3,11 +3,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 
+import Cart from "../../components/Cart";
 import { Fragment, useState, useEffect } from "react";
 import { Dialog, Popover, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
-  MagnifyingGlassIcon,
   ShoppingBagIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
@@ -15,7 +15,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 
-const NavbarHomeClient = () => {
+const NavbarPay = () => {
   const cart = useSelector((state) => state.shop.cart);
 
   const router = useRouter();
@@ -27,14 +27,29 @@ const NavbarHomeClient = () => {
     setProfile(JSON.parse(result));
   }, []);
 
-  const handleClickOut = () => {
-    localStorage.clear();
-    router.reload(window.location.pathname);
+  const [openCart, setOpenCart] = useState(false);
+  const handleOpenCart = () => {
+    setOpenCart(true);
   };
 
+  const handleClickOut = () => {
+    localStorage.clear();
+    router.reload(location.pathname);
+  };
+
+  const [cartcount, setCartCount] = useState(0);
+
+  useEffect(() => {
+    let count = 0;
+    cart.forEach((item) => {
+      count += item.qty;
+    });
+    setCartCount(count);
+  }, [cart, cartcount]);
+
   return (
-    <div>
-      { profile ? (
+    <>
+      {openCart ? <Cart setOpenCart={setOpenCart} openCart={openCart} /> : null}
       <div className="bg-white z-50 fixed w-[100%]">
         {/* Mobile menu */}
         <Transition.Root show={open} as={Fragment}>
@@ -80,35 +95,20 @@ const NavbarHomeClient = () => {
                   {profile ? (
                     <div className="space-y-6 border-t border-gray-200 py-6 px-4">
                       <div className="flow-root">
-                        <a className="-m-2 block p-2 font-semibold text-lg text-black">
+                        <a className="-m-2 block p-2 font-medium text-gray-900">
                           Welcome {profile.name}, glad to see you!
                         </a>
                       </div>
                       <div className="flow-root">
-                        <Link href="/">
-                          <a className="-m-2 block p-2 font-medium text-gray-500">
-                            All your products
-                          </a>
-                        </Link>
-                      </div>
-                      <div className="flow-root">
-                        <Link href="/uploadproduct">
-                          <a className="-m-2 block p-2 font-medium text-gray-500">
-                            Upload a new product
-                          </a>
-                        </Link>
-                      </div>
-                      <div className="flow-root">
-                        <Link href="/adminregister">
-                          <a className="-m-2 block p-2 font-medium text-gray-500">
-                            Register a new admin
-                          </a>
-                        </Link>
+                        <a className="-m-2 block p-2 font-medium text-gray-900">
+                          Your orders
+                        </a>
                       </div>
                       <div className="flow-root">
                         <a
                           onClick={handleClickOut}
-                          className="-m-2 block p-2 font-medium text-gray-500"
+                          className="font-medium text-gray-600
+                            active:text-black"
                         >
                           Log out
                         </a>
@@ -143,11 +143,11 @@ const NavbarHomeClient = () => {
             aria-label="Top"
             className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
           >
-            <div className="border-b border-gray-200">
+            <div className="border-b lg:ml-[-35%] lg:w-[100%] border-gray-200">
               <div className="flex h-16 items-center">
                 <button
                   type="button"
-                  className="rounded-md bg-white p-2 text-gray-400 lg:hidden"
+                  className="rounded-md bg-white w-[40px] p-2 text-gray-400 lg:hidden"
                   onClick={() => setOpen(true)}
                 >
                   <span className="sr-only">Open menu</span>
@@ -156,13 +156,15 @@ const NavbarHomeClient = () => {
 
                 {/* Logo */}
                 <div className="ml-4 flex lg:ml-0">
-                  <a href="/">
-                    <img
-                      className="h-10 w-auto"
-                      src="https://res.cloudinary.com/dkagy4g5m/image/upload/v1664211095/hamburguer_pnssvp.png"
-                      alt=""
-                    />
-                  </a>
+                    <a href="/">
+                      <img
+                        className="h-10 w-auto hover-saturate-100"
+                        src="https://res.cloudinary.com/dkagy4g5m/image/upload/v1664211095/hamburguer_pnssvp.png"
+                        alt=""
+                        href="/"
+                      />
+                    </a>
+
                 </div>
 
                 {/* Flyout menus */}
@@ -174,46 +176,26 @@ const NavbarHomeClient = () => {
                   {profile ? (
                     <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
                       <a className="text-sm font-medium text-gray-700 hover:text-gray-800">
-                        Hi {profile.name}, welcome to your admin page
+                        Hi {profile.name}, enjoy your visit
                       </a>
                       <span
                         className="h-6 w-px bg-gray-200"
                         aria-hidden="true"
                       />
-                      <Link href="/">
-                        <a className="text-sm font-medium cursor-pointer text-gray-500 hover:text-black">
-                          All your products
-                        </a>
-                      </Link>
+                      <a className="text-sm font-medium text-gray-700 hover:text-gray-800">
+                        Your orders
+                      </a>
                       <span
                         className="h-6 w-px bg-gray-200"
                         aria-hidden="true"
                       />
-                      <Link href="/uploadproduct">
-                        <a className="text-sm font-medium cursor-pointer text-gray-500 hover:text-black">
-                          Upload a new product
-                        </a>
-                      </Link>
-                      <span
-                        className="h-6 w-px bg-gray-200"
-                        aria-hidden="true"
-                      />
-                      <Link href="/adminregister">
-                        <a className="text-sm font-medium cursor-pointer text-gray-500 hover:text-black">
-                          Register a new admin
-                        </a>
-                      </Link>
-                      <span
-                        className="h-6 w-px bg-gray-200"
-                        aria-hidden="true"
-                      />
-                      <button
+                      <a
                         onClick={handleClickOut}
-                        className="text-sm font-medium text-gray-500
-                            hover:text-black"
+                        className="text-sm cursor-pointer font-medium text-gray-600
+                            hover:text-black lg:pr-[10px]"
                       >
                         Log out
-                      </button>
+                      </a>
                     </div>
                   ) : (
                     <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
@@ -233,23 +215,29 @@ const NavbarHomeClient = () => {
                       </Link>
                     </div>
                   )}
+
+                  {/* Cart */}
+                  <div className="ml-4 flow-root lg:ml-6">
+                    <a className="group -m-2 flex items-center p-2">
+                      <ShoppingBagIcon
+                        className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500 cursor-pointer"
+                        aria-hidden="true"
+                        onClick={handleOpenCart}
+                      />
+                      <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
+                        {cartcount}
+                      </span>
+                      <span className="sr-only">items in cart, view bag</span>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
           </nav>
         </header>
       </div>
-      )
-      :
-      (
-        <div className="h-full w-full bg-white flex items-center justify-content-center">
-          <h1>Wait...</h1>
-        </div>
-      )
-    }
-
-    </div>
+    </>
   );
 };
 
-export default NavbarHomeClient;
+export default NavbarPay;

@@ -1,6 +1,7 @@
 import "../styles/globals.css";
 import { Provider } from 'react-redux';
 import store from '../store';
+import "../components/StripeCheckOut/styles.css"
 
 function MyApp({ Component, pageProps }) {
   return (

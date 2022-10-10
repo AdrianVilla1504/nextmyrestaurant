@@ -34,7 +34,7 @@ const NavbarHomeClient = () => {
 
   const handleClickOut = () => {
     localStorage.clear();
-    router.reload(window.location.pathname);
+    router.reload(location.pathname);
   };
 
   const [cartcount, setCartCount] = useState(0);
@@ -48,7 +48,7 @@ const NavbarHomeClient = () => {
   }, [cart, cartcount]);
 
   return (
-    <div>
+    <>
       {openCart ? <Cart setOpenCart={setOpenCart} openCart={openCart} /> : null}
       <div className="bg-white z-50 fixed w-[100%]">
         {/* Mobile menu */}
@@ -105,13 +105,13 @@ const NavbarHomeClient = () => {
                         </a>
                       </div>
                       <div className="flow-root">
-                        <button
+                        <a
                           onClick={handleClickOut}
-                          className="text-sm font-medium text-gray-700
-                            hover:text-gray-800"
+                          className="font-medium text-gray-600
+                            active:text-black"
                         >
                           Log out
-                        </button>
+                        </a>
                       </div>
                     </div>
                   ) : (
@@ -189,13 +189,13 @@ const NavbarHomeClient = () => {
                         className="h-6 w-px bg-gray-200"
                         aria-hidden="true"
                       />
-                      <button
+                      <a
                         onClick={handleClickOut}
-                        className="text-sm font-medium text-gray-700
-                            hover:text-gray-800"
+                        className="text-sm cursor-pointer font-medium text-gray-600
+                            hover:text-black lg:pr-[10px]"
                       >
                         Log out
-                      </button>
+                      </a>
                     </div>
                   ) : (
                     <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
@@ -236,7 +236,7 @@ const NavbarHomeClient = () => {
           </nav>
         </header>
       </div>
-    </div>
+    </>
   );
 };
 
