@@ -31,19 +31,17 @@ const Home = () => {
           href="https://res.cloudinary.com/dkagy4g5m/image/upload/v1664211095/hamburguer_pnssvp.png"
         />
       </Head>
-      <div className="bg-white lg:px-[30px]">
+      <div className="bg-white pr-[50px] lg:pr-[0px] lg:pl-[5px] lg:pr-[40px]">
         {role == "ADMIN" ? (
           <>
             <NavbarAdmin />
-            <div className="px-[10px] flex justify-center">
-              <AdminProducts />
-            </div>
+            <AdminProducts />
           </>
         ) : (
           <>
             <NavbarHomeClient />
-            <div className="px-[10px] pt-[80px] flex justify-center">
-              <HomeProducts />
+            <div className="pl-[40px] pt-[90px]">
+            <HomeProducts />
             </div>
           </>
         )}
