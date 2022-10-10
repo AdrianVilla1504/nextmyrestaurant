@@ -42,7 +42,7 @@ const Home = () => {
         ) : (
           <>
             <NavbarHomeClient />
-            <div className="w-full h-full px-[10px] pt-[80px] flex justify-center">
+            <div className="px-[10px] pt-[80px] flex justify-center">
               <HomeProducts />
             </div>
           </>
