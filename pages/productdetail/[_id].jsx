@@ -28,7 +28,9 @@ const productdetail = () => {
   return(
     <div>
       <NavbarHomeClient />
-      <ProductOverview details={product}/>
+      <div className='px-[10px]'>
+        <ProductOverview details={product}/>
+      </div>
     </div>
   );
 

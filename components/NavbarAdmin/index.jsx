@@ -147,7 +147,7 @@ const NavbarHomeClient = () => {
               <div className="flex h-16 items-center">
                 <button
                   type="button"
-                  className="rounded-md bg-white p-2 text-gray-400 lg:hidden"
+                  className="rounded-md w-[40px] bg-white p-2 text-gray-400 lg:hidden"
                   onClick={() => setOpen(true)}
                 >
                   <span className="sr-only">Open menu</span>
@@ -207,13 +207,13 @@ const NavbarHomeClient = () => {
                         className="h-6 w-px bg-gray-200"
                         aria-hidden="true"
                       />
-                      <button
+                      <a
                         onClick={handleClickOut}
-                        className="text-sm font-medium text-gray-500
+                        className="text-sm cursor-pointer font-medium text-gray-400
                             hover:text-black"
                       >
                         Log out
-                      </button>
+                      </a>
                     </div>
                   ) : (
                     <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
