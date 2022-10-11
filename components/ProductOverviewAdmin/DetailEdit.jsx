@@ -128,14 +128,14 @@ const DetailEdit = ({ clicktocanceledit, subdetails }) => {
                     Welcome to your update product page{" "}
                   </p>
                 </div>
-                <div className="px-4 sm:px-0">
-                  <button
+                <div className="px-4 pt-[15px] sm:px-0">
+                  <a
                     onClick={clicktocanceledit}
                     href="#"
                     className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900 pr-[10px]"
                   >
                     Cancel update
-                  </button>
+                  </a>
                 </div>
               </div>
               <div className="mt-5 md:col-span-2 md:mt-0">

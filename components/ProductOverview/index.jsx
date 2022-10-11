@@ -21,7 +21,7 @@ const ProductOverview = ({ details }) =>{
             <img
               src={details.img}
               alt={details.name}
-              className="shadow h-80  lg:h-80 lg:w-full" />
+              className="shadow h-80 rounded-lg lg:h-80 lg:w-full" />
           </div>
         </div>
 

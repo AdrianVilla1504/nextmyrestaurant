@@ -11,6 +11,9 @@ import CartProducts from './CartProducts';
 import Link from 'next/link';
 
 const Cart = ({ setOpenCart, openCart }) =>{
+
+const token = localStorage.getItem('token');
+
 const router = useRouter();
 
 const cart = useSelector((state) => state.shop.cart );
@@ -110,7 +113,9 @@ const handleRemoveItem = (_id) => {
                         <p>$ {totalPrice}</p>
                       </div>
                       <div className="mt-6">
-                        <Link href="/trypay">
+                        { token ?
+                        (
+                          <Link href="/trypay">
                         <button
                           href="#"
                           className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-[#FF9E00] py-3 px-8 text-base font-medium text-white hover:bg-[#E18B00] focus:outline-none focus:ring-2 focus:ring-[#F99A00] focus:ring-offset-2"
@@ -118,6 +123,21 @@ const handleRemoveItem = (_id) => {
                           Checkout
                         </button>
                         </Link>
+                        )
+                        :
+                        (
+                          <Link href="/signin">
+                        <button
+                          href="#"
+                          className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-[#FF9E00] py-3 px-8 text-base font-medium text-white hover:bg-[#E18B00] focus:outline-none focus:ring-2 focus:ring-[#F99A00] focus:ring-offset-2"
+                        >
+                          Checkout
+                        </button>
+                        </Link>
+                        )
+
+                        }
+
                       </div>
                     </div>
                   </div>

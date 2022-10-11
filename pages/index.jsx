@@ -35,7 +35,9 @@ const Home = () => {
         {role == "ADMIN" ? (
           <>
             <NavbarAdmin />
-            <AdminProducts />
+            <div className="pl-[40px]">
+              <AdminProducts />
+            </div>
           </>
         ) : (
           <>

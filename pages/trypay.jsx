@@ -45,13 +45,15 @@ const trypay = () => {
   const [clientSecret, setClientSecret] = useState("");
 
   useEffect(() => {
+
+    const profile = JSON.parse(localStorage.getItem("profile"));
     // Create PaymentIntent as soon as the page loads
     fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/stripe/createPaymentIntent`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ items: [cart] }),
+        body: JSON.stringify({ profile, items: [cart] }),
       }
     )
       .then((res) => res.json())

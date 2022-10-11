@@ -10,11 +10,11 @@ const Subdetail = ({ clicktoedit, subdetails}) => {
         <div className="pt-6 lg:grid lg:grid-cols-2">
           {/* Image gallery */}
           <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid">
-            <div className="grid place-items-center aspect-w-4 aspect-h-5  sm:overflow-hidden lg:grid lg:place-items-start sm:rounded-lg lg:aspect-w-3 lg:aspect-h-4">
+            <div className="rounded-lg grid place-items-center aspect-w-4 aspect-h-5  sm:overflow-hidden lg:grid lg:place-items-start sm:rounded-lg lg:aspect-w-3 lg:aspect-h-4">
               <img
                 src={subdetails.img}
                 alt={subdetails.name}
-                className="shadow h-80  lg:h-80 lg:w-full"
+                className="shadow h-80 rounded-lg lg:h-80 lg:w-full"
               />
             </div>
           </div>

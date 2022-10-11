@@ -16,8 +16,6 @@ const productadmin = () => {
   const product = useSelector((state) => state.product.productDetail);
   const dispatch = useDispatch();
   const { _id } =  router.query;
-  console.log("el aidi :v ", _id)
-  console.log("Aqui deberia estar el id", _id);
   useEffect(() => {
     const fetchData = async () => {
       const result = await getProduct(_id);
@@ -28,8 +26,12 @@ const productadmin = () => {
 
   return(
     <div>
-      <NavbarAdmin />
-      <ProductOverviewAdmin details={product}/>
+      <div className='pr-[1285px]'>
+        <NavbarAdmin />
+      </div>
+      <div className='px-[10px] lg:px-[0px]'>
+        <ProductOverviewAdmin details={product}/>
+      </div>
     </div>
   );
 
