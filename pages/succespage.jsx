@@ -7,6 +7,8 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 const succespage = () => {
 
+  const sender = 0;
+
   useEffect(() => {
     const profile = JSON.parse(localStorage.getItem("profile"));
     const cart = JSON.parse(localStorage.getItem("cart"));
@@ -27,7 +29,15 @@ const succespage = () => {
       return new Error(error);
     }
   }
-  receiptemail();
+
+  if (sender === 0 && cart && profile) {
+    sender +=1
+    if (sender === 1){
+    receiptemail();
+    } else {
+    sender = 0;
+    }
+  }
   }, [])
 
   return (
