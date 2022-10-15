@@ -1,9 +1,35 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react-hooks/rules-of-hooks */
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import NavbarPay from "../components/NavbarPay/index";
-
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 const succespage = () => {
+
+  useEffect(() => {
+    const profile = JSON.parse(localStorage.getItem("profile"));
+    const cart = JSON.parse(localStorage.getItem("cart"));
+    async function receiptemail( ) {
+      console.log("This is the customer profile", profile);
+      console.log("This are the customer receipt products", cart);
+    try {
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({profile, cart}),
+      };
+      const response = await fetch(`${BASE_URL}/api/stripe/generateOrderReceipt`, options);
+      return response.json();
+    } catch (error) {
+      return new Error(error);
+    }
+  }
+  receiptemail();
+  }, [])
+
   return (
     <>
       <NavbarPay />

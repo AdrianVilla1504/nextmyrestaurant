@@ -1,10 +1,14 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useEffect, useState } from "react";
+import { useRouter } from 'next/router';
+
 import {
   PaymentElement,
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
-import { useRouter } from 'next/router'
+
 
 export default function CheckoutForm() {
   const stripe = useStripe();
@@ -12,6 +16,7 @@ export default function CheckoutForm() {
   const elements = useElements();
 
   const [message, setMessage] = useState(null);
+  const [email, setEmail] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -61,7 +66,7 @@ export default function CheckoutForm() {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: `${NEXT_PUBLIC_DEPLOY_URL}/succespage`,
+        return_url: `http://localhost:3000/succespage`,
       },
     });
 
