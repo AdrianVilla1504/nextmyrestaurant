@@ -22,7 +22,11 @@ const trypay = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.shop.cart);
   const cartProducts = JSON.stringify(cart);
-  localStorage.setItem('cart', cartProducts);
+
+  useEffect(()=>{
+    localStorage.setItem('cart', cartProducts);
+  },[cartProducts])
+
   const handleRemoveItem = (_id) => {
     dispatch(removeFromCart(_id));
   };
