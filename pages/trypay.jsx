@@ -21,7 +21,8 @@ const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY);
 const trypay = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.shop.cart);
-
+  const cartProducts = JSON.stringify(cart);
+  localStorage.setItem('cart', cartProducts);
   const handleRemoveItem = (_id) => {
     dispatch(removeFromCart(_id));
   };
