@@ -26,7 +26,7 @@ const productadmin = () => {
 
   return(
     <div>
-      <div className='pr-[1285px]'>
+      <div className='lg:pr-[1285px]'>
         <NavbarAdmin />
       </div>
       <div className='px-[10px] lg:px-[0px]'>
