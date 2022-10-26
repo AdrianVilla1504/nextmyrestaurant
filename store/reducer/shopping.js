@@ -10,10 +10,7 @@ const shopReducer = (state = INITIAL_STATE, action) => {
   console.log("el carrito de compras lleno", state.cart);
   switch (action.type) {
     case actionTypes.ADD_TO_CART:
-    //TODO DETECTAR SI ES UN PRODUCTO NUEVO O YA EXISTE
-    //TODO SI ES UN PRODUCTO NUEVO AGREGARLO AL ARRAY, SI EXISTE, AUMENTAR SU CANTIDAD EN EL ESTADO
     const inCart = state.cart.find((item)=> item._id === action.payload.item._id ? true : false)
-    console.log("Si ya existe in cart, aparecera, sino sera undefined: ", inCart)
     return {
         ...state,
         cart: inCart

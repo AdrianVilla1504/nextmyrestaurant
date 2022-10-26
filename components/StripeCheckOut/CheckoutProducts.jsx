@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { adjustItemQty } from "../../store/action/shopping";
-import ModalTry from "../ModaTry/index";
+
 
 const CheckoutProducts = ({ product, handleRemoveItem }) => {
   const dispatch = useDispatch();
@@ -18,7 +18,6 @@ const CheckoutProducts = ({ product, handleRemoveItem }) => {
     <div>
       {product ? (
         <>
-          <ModalTry/>
           <li key={product._id} className="flex flex-row py-3">
             <div className="h-14 w-14 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
               <img

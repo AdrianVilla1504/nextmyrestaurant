@@ -34,7 +34,7 @@ const NavbarHomeClient = () => {
 
   const handleClickOut = () => {
     localStorage.clear();
-    router.push('/');
+    router.reload(window.location.pathname);
   };
 
   const [cartcount, setCartCount] = useState(0);

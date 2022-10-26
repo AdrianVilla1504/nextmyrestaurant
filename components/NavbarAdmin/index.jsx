@@ -30,8 +30,6 @@ const NavbarHomeClient = () => {
     router.reload(window.location.pathname);
   };
 
-
-
   return (
     <div>
       { profile ? (
