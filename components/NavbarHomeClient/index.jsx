@@ -34,7 +34,7 @@ const NavbarHomeClient = () => {
 
   const handleClickOut = () => {
     localStorage.clear();
-    router.reload(location.pathname);
+    router.push('/');
   };
 
   const [cartcount, setCartCount] = useState(0);
@@ -46,6 +46,12 @@ const NavbarHomeClient = () => {
     });
     setCartCount(count);
   }, [cart, cartcount]);
+
+  const handleBackHome = (e) => {
+    e.preventDefault();
+    router.push("/");
+
+  };
 
   return (
     <>
@@ -156,12 +162,11 @@ const NavbarHomeClient = () => {
 
                 {/* Logo */}
                 <div className="ml-4 flex lg:ml-0">
-                    <a href="/">
+                    <a onClick={handleBackHome} className="cursor-pointer">
                       <img
                         className="h-10 w-auto hover-saturate-100"
                         src="https://res.cloudinary.com/dkagy4g5m/image/upload/v1664211095/hamburguer_pnssvp.png"
-                        alt=""
-                        href="/"
+                        alt="home_icon"
                       />
                     </a>
 

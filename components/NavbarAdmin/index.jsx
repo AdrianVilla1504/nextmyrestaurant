@@ -16,8 +16,6 @@ import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 
 const NavbarHomeClient = () => {
-  const cart = useSelector((state) => state.shop.cart);
-
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [profile, setProfile] = useState();
@@ -31,6 +29,8 @@ const NavbarHomeClient = () => {
     localStorage.clear();
     router.reload(window.location.pathname);
   };
+
+
 
   return (
     <div>

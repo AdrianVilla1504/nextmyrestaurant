@@ -17,6 +17,7 @@
     "@sendgrid/mail": "^7.7.0",
     "@stripe/react-stripe-js": "^1.4.1",
     "@stripe/stripe-js": "^1.15.0",
+    "alpine": "^0.2.1",
     "dotenv": "^16.0.2",
     "next": "^12.3.0",
     "react": "^18.2.0",

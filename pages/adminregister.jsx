@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { signup } from "../services/auth";
 import Head from 'next/head';
+import swal from 'sweetalert';
 
 const adminregister = () => {
   const router = useRouter();
@@ -20,15 +21,33 @@ const adminregister = () => {
     email: signupform.email,
     role: "ADMIN",
     phone: signupform.phone,
-    password: signupform.password,
+    password: signupform.password_confirm,
   };
 
   const handlerSubmit = async (e) => {
-    console.log("adminprofile al momento de darle submit", adminprofile);
     e.preventDefault();
     try {
-      await signup(adminprofile);
-      router.push("/signin");
+      (signupform.password && signupform.password_confirm) ? (
+        (signupform.password === signupform.password_confirm && signupform.password.split("").length > 8) ?
+          (
+            await signup(clientprofile),
+            router.push("/signin")
+          )
+          :
+          (
+            swal({
+              title: "Error!",
+              text: "Passwords doesn't match or your password is less than 8 characters long.",
+              icon: "warning",
+              button: "Try again",
+              })
+          )
+      )
+      :
+      (
+        null
+      )
+
     } catch (error) {
       console.log(error);
     }
@@ -72,7 +91,7 @@ const adminregister = () => {
                     type="text"
                     autoComplete="name"
                     required
-                    className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-[#FF9E00] focus:outline-none focus:ring-[#FF9E00] sm:text-sm"
+                    className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-white placeholder-gray-500 focus:z-10 focus:border-[#FF9E00] focus:outline-none focus:ring-[#FF9E00] sm:text-sm"
                     placeholder="Name"
                     onChange={handleChange}
                   />
@@ -87,7 +106,7 @@ const adminregister = () => {
                     type="email"
                     autoComplete="email"
                     required
-                    className="relative block w-full appearance-none rounded-none border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-[#FF9E00] focus:outline-none focus:ring-[#FF9E00] sm:text-sm"
+                    className="relative block w-full appearance-none rounded-none border border-gray-300 px-3 py-2 text-white placeholder-gray-500 focus:z-10 focus:border-[#FF9E00] focus:outline-none focus:ring-[#FF9E00] sm:text-sm"
                     placeholder="Email address"
                     onChange={handleChange}
                   />
@@ -101,7 +120,7 @@ const adminregister = () => {
                     name="phone"
                     type="tel"
                     required
-                    className="relative block w-full appearance-none rounded-none border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-[#FF9E00] focus:outline-none focus:ring-[#FF9E00] sm:text-sm"
+                    className="relative block w-full appearance-none rounded-none border border-gray-300 px-3 py-2 text-white placeholder-gray-500 focus:z-10 focus:border-[#FF9E00] focus:outline-none focus:ring-[#FF9E00] sm:text-sm"
                     placeholder="Phone number"
                     onChange={handleChange}
                   />
@@ -116,8 +135,24 @@ const adminregister = () => {
                     type="password"
                     autoComplete="current-password"
                     required
-                    className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-[#FF9E00] focus:outline-none focus:ring-[#FF9E00] sm:text-sm"
+                    className="relative block w-full appearance-none rounded-none border border-gray-300 px-3 py-2 text-white placeholder-gray-500 focus:z-10 focus:border-[#FF9E00] focus:outline-none focus:ring-[#FF9E00] sm:text-sm"
                     placeholder="Password"
+                    onChange={handleChange}
+
+                  />
+                </div>
+                <div>
+                  <label htmlFor="password" className="sr-only">
+                    Password confirmation
+                  </label>
+                  <input
+                    id="password_confirm"
+                    name="password_confirm"
+                    type="password"
+                    autoComplete="current-password"
+                    required
+                    className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-white placeholder-gray-500 focus:z-10 focus:border-[#FF9E00] focus:outline-none focus:ring-[#FF9E00] sm:text-sm"
+                    placeholder="Confirm Password"
                     onChange={handleChange}
                   />
                 </div>

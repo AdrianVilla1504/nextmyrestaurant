@@ -6,20 +6,49 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { signup } from "../services/auth";
 import Head from "next/head";
+import swal from "sweetalert"
+
 
 const register = () => {
   const router = useRouter();
 
   const [signupform, setSignupform] = useState({});
+
   const handleChange = (e) => {
     setSignupform({ ...signupform, [e.target.name]: e.target.value });
+  };
+
+  const clientprofile = {
+    name: signupform.name,
+    email: signupform.email,
+    phone: signupform.phone,
+    password: signupform.password_confirm,
   };
 
   const handlerSubmit = async (e) => {
     e.preventDefault();
     try {
-      await signup(signupform);
-      router.push("/signin");
+      (signupform.password && signupform.password_confirm) ? (
+        (signupform.password === signupform.password_confirm && signupform.password.split("").length > 8) ?
+          (
+            await signup(clientprofile),
+            router.push("/signin")
+          )
+          :
+          (
+            swal({
+              title: "Error!",
+              text: "Passwords confirmation doesn't match or your password is less than 8 characters long.",
+              icon: "warning",
+              button: "Try again",
+              })
+          )
+      )
+      :
+      (
+        null
+      )
+
     } catch (error) {
       console.log(error);
     }
@@ -110,8 +139,24 @@ const register = () => {
                     type="password"
                     autoComplete="current-password"
                     required
-                    className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-white placeholder-gray-500 focus:z-10 focus:border-[#FF9E00] focus:outline-none focus:ring-[#FF9E00] sm:text-sm"
+                    className="relative block w-full appearance-none rounded-none border border-gray-300 px-3 py-2 text-white placeholder-gray-500 focus:z-10 focus:border-[#FF9E00] focus:outline-none focus:ring-[#FF9E00] sm:text-sm"
                     placeholder="Password"
+                    onChange={handleChange}
+
+                  />
+                </div>
+                <div>
+                  <label htmlFor="password" className="sr-only">
+                    Password confirmation
+                  </label>
+                  <input
+                    id="password_confirm"
+                    name="password_confirm"
+                    type="password"
+                    autoComplete="current-password"
+                    required
+                    className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-white placeholder-gray-500 focus:z-10 focus:border-[#FF9E00] focus:outline-none focus:ring-[#FF9E00] sm:text-sm"
+                    placeholder="Confirm Password"
                     onChange={handleChange}
                   />
                 </div>
