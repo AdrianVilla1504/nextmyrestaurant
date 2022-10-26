@@ -6,7 +6,7 @@ const Subdetail = ({ clicktoedit, subdetails}) => {
   return (
     <div>
       {subdetails ? (
-      <div className="bg-white pt-[10%] lg:pt-[7%] lg:pb-[10%] lg:h-[100%] w-full lg:pb-[54px]">
+      <div className="bg-white pt-[10%] px-[10px] lg:pt-[7%] lg:pb-[10%] lg:h-[100%] w-full lg:pb-[54px]">
         <div className="pt-6 lg:grid lg:grid-cols-2">
           {/* Image gallery */}
           <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid">
