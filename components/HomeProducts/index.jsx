@@ -6,8 +6,8 @@ import { fetchProductsList } from "../../store/action/product";
 import Link from "next/link";
 
 const HomeProducts = () => {
-  const { productList } = useSelector((state) => state.product);
-  const dispatch = useDispatch();
+const dispatch = useDispatch();
+const { productList } = useSelector((state) => state.product);
 
   useEffect(() => {
     dispatch(fetchProductsList());
@@ -15,9 +15,8 @@ const HomeProducts = () => {
 
   return (
     <>
-      {productList ? (
+      { productList ? (
           <>
-            <h2 className="sr-only">Products</h2>
             <div className="grid grid-cols-1 gap-y-10 gap-x-6 h-[100%] sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
               {productList.map((product) => (
                 <Link href={`/productdetail/${product._id}`} key={product._id}>
@@ -41,8 +40,10 @@ const HomeProducts = () => {
             </div>
           </>
       ) : (
-        <div className="h-full w-full bg-white flex items-center justify-center">
-          <h1>Wait...</h1>
+        <div className="w-[100%] h-[80%] pt-[20vh] flex justify-center items-center">
+          <div className="w-[50%%] lg:w-[25%] h-[80%] grid grid-cols-1 ">
+            <img src="https://res.cloudinary.com/dkagy4g5m/image/upload/v1664218685/logo_burgir_jrmwvf.png" alt="burguer_factory_products_loading"  className="W-[100%] animate-bounce"/>
+          </div>
         </div>
       )}
     </>
