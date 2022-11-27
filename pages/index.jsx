@@ -31,7 +31,7 @@ const Home = () => {
           href="https://res.cloudinary.com/dkagy4g5m/image/upload/v1664211095/hamburguer_pnssvp.png"
         />
       </Head>
-      <div className="bg-white pr-[50px] lg:pr-[0px] lg:pl-[5px] lg:pr-[40px]">
+      <div className="bg-white">
         {role == "ADMIN" ? (
           <>
             <NavbarAdmin />
@@ -42,8 +42,8 @@ const Home = () => {
         ) : (
           <>
             <NavbarHomeClient />
-            <div className="pl-[40px] pt-[90px]">
-            <HomeProducts />
+            <div className="p-[40px] pt-[90px] w-[100vw]">
+              <HomeProducts />
             </div>
           </>
         )}
